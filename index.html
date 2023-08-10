@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade Prática Login</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>API de Login</h1>
+
+    <form id="formulario-login">
+      <label for="email"> E-mail / Username:</label>
+      <input type="text" name="email" id="email" required />
+
+      <label for="senha">Senha:</label>
+      <input type="text" name="senha" id="senha" required />
+
+      <button>Login</button>
+      <button type="button" id="cadastro">Cadastre-se</button>
+    </form>
+    <script>
+      const form = document.getElementById("formulario-login");
+      form.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+        console.log(`O usuário com o e-mail ${email} está logado com sucesso!`);
+
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/usuarios/login",
+            {
+              email: email,
+              senha: senha,
+            }
+          );
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    </script>
+  </body>
+</html>

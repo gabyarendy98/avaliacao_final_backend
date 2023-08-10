@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <thead>
+      <tr>
+        <th>Título:</th>
+        <th>Descrição:</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-recados"></tbody>
+    <script>
+      let pagina = 1;
+      const recadosPorPagina = 3;
+      function carregarRecados(paginaAtual) {
+        const response = axios.get(
+          `https://api-recados-vgqt.onrender.com/pagina=${paginaAtual}&tamanhoPagina=${recadosPorPagina}`
+        );
+        console.log(response.data);
+      }
+
+      carregarRecados(pagina);
+    </script>
+  </body>
+</html>
